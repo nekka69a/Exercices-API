@@ -1,0 +1,86 @@
+
+Section 1 : Promesses et Gestion des Erreurs avec catch
+
+[Explication détaillée]
+
+📘 Une promesse est un objet qui représente la complétion ou l'échec d'une opération asynchrone. Les promesses ont trois états : pending, fulfilled, et rejected. Nous utilisons .then() pour manipuler le résultat d'une promesse et .catch() pour gérer les erreurs.
+
+
+
+✏️ Exemple d'utilisation d'une promesse pour une requête HTTP simple :
+
+fetch('https://api.example.com/data')
+
+.then(response => response.json())
+
+.then(data => console.log(data))
+
+.catch(error => console.error('Error fetching data:', error));
+
+
+
+
+
+
+
+Section 2 : Async/Await pour une Syntaxe Asynchrone Plus Claire
+
+[Explication détaillée]
+
+📘 Async et Await sont des extensions des promesses qui permettent d'écrire des opérations asynchrones d'une manière plus lisible. Une fonction déclarée avec async retourne une promesse, et await peut être utilisé pour attendre la résolution de cette promesse.
+
+
+
+✏️ Refactoring de l'exemple précédent avec async/await :
+
+async function fetchData() {
+
+try {
+
+const response = await fetch('https://api.example.com/data');
+
+const data = await response.json();
+
+console.log(data);
+
+} catch (error) {
+
+console.error('Error fetching data:', error);
+
+}
+
+}
+
+
+
+
+
+Section 3 : Utilisation de fetch pour les Requêtes HTTP
+
+[Explication détaillée]
+
+📘 L'API Fetch permet de réaliser des requêtes HTTP asynchrones. Elle est promisifiée nativement, ce qui signifie qu'elle utilise les promesses pour gérer les réponses.
+
+
+
+✏️ Exemple d'utilisation de Fetch pour envoyer des données à un serveur :
+
+async function postData(url = '', data = {}) {
+
+const response = await fetch(url, {
+
+method: 'POST',
+
+headers: {
+
+'Content-Type': 'application/json'
+
+},
+
+body: JSON.stringify(data)
+
+});
+
+return response.json();
+
+}
